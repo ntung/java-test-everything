@@ -1,30 +1,36 @@
 package com.itersdesktop.javatechs;//package com.test;
 
-import com.itersdesktop.javatechs.oop.*;
+import com.itersdesktop.javatechs.oop.EbiEntryBuilder;
+import com.itersdesktop.javatechs.oop.OmicsDiEntryBuilder;
+import com.itersdesktop.javatechs.quartz.MyProgram;
+import org.quartz.SchedulerException;
 
 public class Main {
 
-    public static void main(String[] args) {
-        //testEbiEntryBuilder();
+    public static void main(String[] args) throws SchedulerException, InterruptedException {
+        testEbiEntryBuilder();
         testBigIntegerAddition();
+        MyProgram.run();
     }
 
     private static void testBigIntegerAddition() {
-        //new BigIntAddition().test();
-//        boolean k = new Solution().isPalindrome(1001);
+        final String message = "Test Addition For The Big Integer";
+        System.out.println(message);
+        // new BigIntAddition().test();
+        // boolean k = new Solution().isPalindrome(1001);
         boolean k = new Solution().isPalindrome(88888);
         System.out.println(k);
     }
 
     private static void testEbiEntryBuilder() {
+        final String message = "Test EBI EntryBuilder";
+        System.out.println(message);
         EbiEntryBuilder ebiBuilder = new EbiEntryBuilder();
         ebiBuilder.index();
 
         OmicsDiEntryBuilder omicsdiBuilder = new OmicsDiEntryBuilder();
         omicsdiBuilder.index();
     }
-
-
 }
 
 class Solution {
@@ -50,7 +56,9 @@ class Solution {
             int i, j;
             i = (int) (double) (length / 2) - 1;
             j = (int) (double) (length / 2);
-            if (length % 2 == 1) { j += 1; }
+            if (length % 2 == 1) {
+                j += 1;
+            }
             while (number[i] == number[j] && i > 0) {
                 i--;
                 j++;
