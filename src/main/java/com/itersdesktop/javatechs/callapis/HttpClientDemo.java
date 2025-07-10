@@ -13,10 +13,7 @@ public class HttpClientDemo {
 
     public static void main(String[] args) {
         HttpRequest request = HttpRequest.newBuilder()
-                //.uri(URI.create("https://jokes-by-api-ninjas.p.rapidapi.com/v1/jokes"))
                 .uri(URI.create(Helpers.API_URL))
-                //.header("X-RapidAPI-Host", "jokes-by-api-ninjas.p.rapidapi.com")
-                //.header("X-RapidAPI-Key", "e8c2beb634mshdf12449a1ab6679p1eabccjsn26b34f640e2b")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
         doWithStringHandler(request);
@@ -33,6 +30,7 @@ public class HttpClientDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            assert response != null;
             extracted(response.body());
         }
     }
@@ -45,9 +43,6 @@ public class HttpClientDemo {
             int statusCode = response.statusCode();
             System.out.println("HTTP status: " + statusCode);
             System.out.println("Headers:");
-            /*System.out.println("Users returned in request: ");
-            List<User> users = ExampleUtils.toList(response.body());
-            users.forEach(System.out::println);*/
             response.headers().map().forEach((header, value) ->
                 System.out.println(header + " = " + String.join(", ", value)));
         } catch (IOException e) {
@@ -55,6 +50,7 @@ public class HttpClientDemo {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
+            assert response != null;
             System.out.println(response.body());
         }
     }
