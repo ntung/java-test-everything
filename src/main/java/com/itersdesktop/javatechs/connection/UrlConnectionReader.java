@@ -11,12 +11,12 @@ public class UrlConnectionReader {
         System.out.println(output);
     }
 
-    private static String getUrlContents(String theUrl) {
+    public static String getUrlContents(String theUrl) {
         StringBuilder content = new StringBuilder();
         // Use try and catch to avoid the exceptions
         try {
             URL url = new URL(theUrl); // creating a url object
-            URLConnection urlConnection = url.openConnection(); // creating a urlconnection object
+            URLConnection urlConnection = url.openConnection(); // creating an urlconnection object
 
             // wrapping the urlconnection in a bufferedreader
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
